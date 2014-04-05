@@ -1,0 +1,7 @@
+(setf *world*
+  ;; (id description (exits) peek)
+  '((start "This is the start" (one back) "You see the start")
+    (back "You died" () "You go home")
+    (one "You are in one" (start two) "You see one")
+    (two "You are in TWO" (one end) "You see two")
+    (end "You finished the game!" () "You see the end ahead!")))
