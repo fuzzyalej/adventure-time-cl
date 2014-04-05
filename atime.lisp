@@ -33,16 +33,27 @@
     (cond ((eql exits ())(puts "This room has no exits"))
           (t (dolist (x exits) (puts (peek x)))))))
 
-;; Starting the game dsl
+(defun stage-exists-p (stage)
+  (get-stage stage))
+
+(defun stage-valid-from-here-p (stage)
+  (member stage (exits *current-stage*)))
+
 (defun world-description ()
   (puts (description *current-stage*))
   (describe-exits *current-stage*))
 
 (defun ask-adventurer ()
   (world-description)
-  (let ((go (prompt-read "Where to? ")))
-    (setf *current-stage* (intern (string-upcase go)))
-    (ask-adventurer)))
+  (let* ((raw-stage (prompt-read "Where to? "))
+         (stage (intern (string-upcase raw-stage))))
+    (cond ((and (stage-exists-p stage)(stage-valid-from-here-p stage))
+           (progn
+             (setf *current-stage* stage)
+             (ask-adventurer)))
+          (t (progn
+               (puts "That is not a valud stage!")
+               (ask-adventurer))))))
 
 (defun start (adventure)
   "Start an adventure!"
