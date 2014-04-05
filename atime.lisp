@@ -46,15 +46,26 @@
 (defun dead-end-p (stage)
   (endp (exits stage)))
 
+(defun ask-adventurer ()) ; placeholder
+
+(defun use-stage (stage)
+  (cond ((dead-end-p stage)(progn (puts "GAME OVER")(exit))) ; if you go to 'end, you lose automatically
+        ((stage-valid-from-here-p stage) (progn
+                                           (setf *current-stage* stage)
+                                           (ask-adventurer)))
+        (t (progn
+             (puts "That stage is not valid from here")
+             (puts "You have been penalized for cheating, back to the start")
+             (setf *current-stage* 'start)
+             (ask-adventurer)))))
+
 (defun ask-adventurer ()
   (puts "")
   (world-description)
   (let* ((raw-stage (prompt-read "Where to? "))
          (stage (intern (string-upcase raw-stage))))
-    (cond ((dead-end-p stage)(progn (puts "GAME OVER")(exit))) ;no exits
-          ((and (stage-exists-p stage)(stage-valid-from-here-p stage)) ; valid stage
-           (progn (setf *current-stage* stage) (ask-adventurer)))
-          (t (progn ; invalid stage
+    (cond ((stage-exists-p stage)(use-stage stage))
+          (t (progn
                (puts "That is not a valid stage!")
                (ask-adventurer))))))
 
