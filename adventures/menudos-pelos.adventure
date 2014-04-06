@@ -1,0 +1,13 @@
+(setf *world*
+  ;; (id description (exits) peek)
+  '((start "Te encuentras en la entrada a la peluqueria. Ya era hora de ir, que menudos pelos me llevas, mozarro" (hall calle) "Puedes ver la entrada de la peluqueria")
+    (calle "Te vas a dar un paseo y se te cae un piano ACME en el coco. Paleto." () "Puedes ver una agradable calle por la que pasear tus flamantes pelarros")
+    (hall "Una pila de revistas se amontona entre un sarao de viejas esperando el tinte. La peluquera tiabuenorra se te acerca para preguntarte que quieres que te haga" (start corte tinte otra-cosa) "El hall de la peluqueria esta lleno")
+    (otra-cosa "La peluquera tambien es puta. Por 10e consigues tu suenyo y te vas contento a casa." () "Puedes pedirle otra cosa")
+    (tinte "La tia buenorra te masajea la cabeza mientras te pone el tinte" (esperar ficha) "Quieres un tinte de pelo?")
+    (esperar "La senyora Ramira se te sienta al lado y te llena la cabeza de historias de su sobrina la del pueblo mientras le hacen la pedicura" (sobrina cuerno esperar-mas) "Puedes esperar un poco")
+    (ficha "La tia buenorra te manda al carajo y te echa de la peluqueria. Te vas a casa con media cabeza de un color y la otra rapada." () "Puedes meter ficha a la rubia tetona")
+    (corte "Te cortan una oreja y te vas llorando a casa. Tu lo que querias era acostarte con la peluquera, eh?" () "Quieres un corte de pelo?")
+    (sobrina "La Ramira te da el telefono de su sobrina. Una semana despues quedas con ella y es un esperpento horrible. Este mes tampoco follas." () "Puedes llamar a la sobrina")
+    (cuerno "Mandas a la Ramira al cuerno, que sale escopetada de la peluqueria. La rubia tetona te da las gracias porque la Ramira es mu pesada. Eres el heroe local y te calzas a la peluquera. Big win" () "Puedes mandar al cuerno a la Ramira conyazo")
+    (esperar-mas "Se te pasa el tinte de hora. Mientras te enjuagan la cabeza se te cae todo el pelo. A la rubia no le gustan los calvos, la has cagao." () "Puedes esperar un rato mas")))

@@ -66,7 +66,7 @@
 
 (defun use-room (room)
   "Try to switch to the given room from the current one"
-  (cond ((dead-end-p room)(progn (puts "GAME OVER")(exit))) ; if you go to 'end, you lose automatically
+  (cond ((dead-end-p room)(progn (puts (description room))(puts "GAME OVER")(exit))) ; if you go to 'end, you lose automatically
         ((room-valid-from-here-p room) (progn
                                          (setf *current-room* room)
                                          (ask-adventurer)))
